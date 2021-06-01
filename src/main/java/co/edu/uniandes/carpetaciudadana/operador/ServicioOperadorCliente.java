@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class ServicioOperador extends SpringBootServletInitializer {
+public class ServicioOperadorCliente extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(ServicioOperador.class, args);
+        SpringApplication.run(ServicioOperadorCliente.class, args);
     }
 }
