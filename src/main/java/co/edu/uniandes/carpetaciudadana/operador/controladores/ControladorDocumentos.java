@@ -17,14 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +32,9 @@ public class ControladorDocumentos {
 
     public static final String SEPARADOR =
             "\n===============================================================\n";
+    public static final String CODIGO_SUB_CARPETA = "CPT-0025";
+    public static final String MAPA_ARCHIVO_DOCUMENTO_1 = "DOC-001=Cedula de Ciudadania.txt";
+    public static final String MAPA_ARCHIVO_DOCUMENTO_2 = "DOC-002=Diploma de PreGrado.txt";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -72,6 +73,12 @@ public class ControladorDocumentos {
             System.out.printf("- %s.txt", peticion.getArchivos()[i]);
             if (i < peticion.getArchivos().length - 1) System.out.println();
         }
+
+        System.out.printf("\n\nSub-Carpeta Seleccionada: [%s]\n", CODIGO_SUB_CARPETA);
+        System.out.println("Cruce Archivos vs Documentos Enviados:");
+        System.out.printf("\t- [%s]\n", MAPA_ARCHIVO_DOCUMENTO_1);
+        System.out.printf("\t- [%s]", MAPA_ARCHIVO_DOCUMENTO_2);
+        
         System.out.print(SEPARADOR);
 
         HttpHeaders headers = new HttpHeaders();
@@ -83,13 +90,6 @@ public class ControladorDocumentos {
 
         ResponseEntity<String> response = restTemplate
                 .postForEntity(peticion.getUrlEntidad() + "/archivos/" + peticion.getNit(), requestEntity, String.class);
-
-
-        /*ResponseEntity<Object> respuesta = this.restTemplate.postForEntity(
-                urlEntidad + "/archivos/" + cedula,
-                obtenerArchivosAEnviar(),
-                Object.class,
-                Collections.singletonMap("Content-Type", "multipart/form-data"));*/
     }
 
     private static MultiValueMap obtenerArchivosAEnviar(String[] archivos) {
@@ -100,8 +100,11 @@ public class ControladorDocumentos {
             body.add("archivos", obtenerArchivoComoRecurso(archivos[i]));
         }
 
-        /*body.add("archivos", obtenerArchivoComoRecurso("Cedula de Ciudadania"));
-        body.add("archivos", obtenerArchivoComoRecurso("Diploma de PreGrado"));*/
+        body.set("codigoSubCarpeta", CODIGO_SUB_CARPETA);
+
+        body.add("mapaArchivosDocumentos", MAPA_ARCHIVO_DOCUMENTO_1);
+        body.add("mapaArchivosDocumentos", MAPA_ARCHIVO_DOCUMENTO_2);
+
         return body;
     }
 
