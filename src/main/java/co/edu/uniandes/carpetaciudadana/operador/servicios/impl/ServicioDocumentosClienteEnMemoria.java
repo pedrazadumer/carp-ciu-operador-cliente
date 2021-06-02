@@ -46,13 +46,13 @@ public class ServicioDocumentosClienteEnMemoria implements ServicioDocumentosCli
                         this.tituloDoctorado, this.referenciaPersonal, this.referenciaLaboral));
 
         this.cruceArchivosDocumentos = new HashMap<>();
-        this.cruceArchivosDocumentos.put(DOC_CEDULA_DE_CIUDADANIA, "DOC-001=DOCUMENTO_IDENTIDAD");
-        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_PRE_GRADO, "DOC-002=TITULO_PROFESIONAL");
-        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_POST_GRADO, "DOC-003=TITULO_POSTGRADO");
-        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_DOCTORADO, "DOC-004=TITULO_DOCTORADO");
-        this.cruceArchivosDocumentos.put(DOC_REFERENCIA_LABORAL, "DOC-005=REFERENCIA_LABORAL");
-        this.cruceArchivosDocumentos.put(DOC_REFERENCIA_PERSONAL, "DOC-006=REFERENCIA_PERSONAL");
-        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_MAESTRIA, "DOC-007=TITULO_MAESTRIA");
+        this.cruceArchivosDocumentos.put(DOC_CEDULA_DE_CIUDADANIA, String.format("DOC-001=%s.txt", DOC_CEDULA_DE_CIUDADANIA));
+        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_PRE_GRADO, String.format("DOC-002=%s.txt", DOC_DIPLOMA_DE_PRE_GRADO));
+        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_POST_GRADO, String.format("DOC-003=%s.txt", DOC_DIPLOMA_DE_POST_GRADO));
+        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_DOCTORADO, String.format("DOC-004=%s.txt", DOC_DIPLOMA_DE_DOCTORADO));
+        this.cruceArchivosDocumentos.put(DOC_REFERENCIA_LABORAL, String.format("DOC-005=%s.txt", DOC_REFERENCIA_LABORAL));
+        this.cruceArchivosDocumentos.put(DOC_REFERENCIA_PERSONAL, String.format("DOC-006=%s.txt", DOC_REFERENCIA_PERSONAL));
+        this.cruceArchivosDocumentos.put(DOC_DIPLOMA_DE_MAESTRIA, String.format("DOC-007=%s.txt", DOC_DIPLOMA_DE_MAESTRIA));
     }
 
 
